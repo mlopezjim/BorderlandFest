@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    
+    <title>Cuestionario</title>
+    <style>
+        html {
+            background-repeat: no-repeat;
+            background-image: url({{url_for('static',filename='img/fondoCuestionario.jpg')}});
+            background-size:cover;
+            min-height: 100%;
+        }
+        
+        body {
+            background: none;
+        }
+        
+        #advanced-search-form {
+            background-color:rgba(0,0,0,0.4);
+            max-width: 800px;
+            margin: 5% auto;
+            padding: 40px;
+            color: white;
+        }
+        
+        #advanced-search-form h2 {
+            padding-bottom: 20px;
+            margin: 10px 20px;
+            font-size: 24px;
+        }
+        
+        #advanced-search-form hr {
+            margin-top: 38px;
+            margin-bottom: 54px;
+            margin-left:3px;
+            border: 1px solid #cccccc;
+        }
+        
+        #advanced-search-form .form-group {
+            margin-bottom: 20px;
+            margin-left: 20px;
+            width: 30%;
+            display: block; 
+            text-align: left;
+        }
+        
+        #advanced-search-form .form-control {
+            padding: 12px 20px;
+            height: auto;
+            border-radius: 2px;
+        }
+        
+        #advanced-search-form .radio-inline {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        #advanced-search-form .gender {
+            width: 30%;
+            margin-top: 30px;
+            padding-left: 20px
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        #advanced-search-form .btn {
+            width: 46%;
+            margin: 20px auto 0;
+            display: block;
+            outline: none;
+        }
+        
+        @media screen and (max-width: 800px) {
+            #advanced-search-form .form-group {
+                width: 45%;
+            }
+        
+            #advanced-search-form {
+                margin-top: 0;
+            }
+        }
+        
+        @media screen and (max-width: 560px) {
+            #advanced-search-form .form-group {
+                width: 100%;
+                margin-left: 0;
+            }
+        
+            #advanced-search-form h2 {
+                text-align: center;
+            }
+        }
+    
+        /* Nuevas reglas */
+        .form-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        
+        .form-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .form-container li {
+            margin-bottom: 20px;
+        }
+        select{
+            color:black
+        }
+        
+    </style>
+    
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{messages}}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container" id="advanced-search-form">
+        <h2>Crea tu festival</h2>
+        <form action="/add_fest" method="post">
+            <ul>
+            <li class="form-group">
+                <label for="nombre_festival">Nombre del festival</label>
+                <input type="text" class="form-control" placeholder="Nombre del festival" name="nombre_festival">
+            </li>
+            
+            <li class="form-group">
+                <label for="tipo_musica">Tipo de musica</label>
+                <select name="tipo_musica" id="tipo_musica">
+                    <option value="Electro">Electrónica</option>
+                    <option value="Latina">Latina</option>
+                    <option value="Pop">Pop</option>
+                </select>
+            </li>
+            <li class="form-group">
+                <label for="duracion">Elije la duración de tu festival</label>
+                <select name="duracion" id="duracion">
+                    <option value="1">1 día</option>
+                    <option value="2">2 días</option>
+                    <option value="3">3 días</option>
+                </select>
+            </li>
+            <li class="form-group">
+                <label for="precio_entrada">Precio de la entrada</label>
+                <input type="text" class="form-control" placeholder="Precio" name="precio_entrada">
+            </li>
+            <li class="form-group">
+                <label for="precio_bonos">Precio bono 10 copas</label>
+                <input type="text" class="form-control" placeholder="Precio copas" name="precio_bonos">
+            </li>
+            </ul>
+            <div class="clearfix"></div>
+            <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span> Search</button>
+        </form>
+    </div>
+</body>
+
+</html>
